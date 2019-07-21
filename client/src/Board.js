@@ -1,0 +1,40 @@
+import React from "react";
+import styled from "styled-components";
+
+import Row from "./Row";
+
+function Board(props) {
+  const board = [
+    [1, 0, 0, 0, 0, 0, 0, 1, 0],
+    [0, 1, 1, 0, 0, 0, 0, 1, 0],
+    [1, 1, 0, 0, 0, 0, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0]
+  ];
+  const width = 500,
+    height = 500;
+  const dims = {
+    rows: board.length,
+    cols: board[0].length,
+    width,
+    height
+  };
+  const Board = styled.div`
+    width: ${width}px;
+    height: ${height}px;
+    border: 1px solid red;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  `;
+
+  const rows = board.map((row, i) => <Row key={i} row={row} dims={dims} />);
+  return <Board>{rows}</Board>;
+}
+
+export default Board;
