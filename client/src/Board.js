@@ -4,17 +4,7 @@ import styled from "styled-components";
 import Row from "./Row";
 
 function Board(props) {
-  const board = [
-    [1, 0, 0, 0, 0, 0, 0, 1, 0],
-    [0, 1, 1, 0, 0, 0, 0, 1, 0],
-    [1, 1, 0, 0, 0, 0, 0, 1, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0]
-  ];
+  const board = props.board;
   const width = 500,
     height = 500;
   const dims = {
