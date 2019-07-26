@@ -4,7 +4,7 @@ import conway from "./conway";
 import Board from "./Board.js";
 
 function App() {
-  const [board, newBoard] = useState([
+  const ogBoard = [
     [1, 0, 0, 0, 0, 0, 0, 1, 0],
     [0, 1, 1, 0, 0, 0, 0, 1, 0],
     [1, 1, 0, 0, 0, 0, 0, 1, 0],
@@ -14,17 +14,25 @@ function App() {
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0]
-  ]);
+  ];
+  const [board, newBoard] = useState(ogBoard);
+  const [running, setRunning] = useState(false);
+  const [waiting, setWaiting] = useState(false);
 
   useEffect(() => {
-    // update the board every "t" seconds
-    const t = 0.5;
-    setTimeout(() => newBoard(conway(board)), t);
+    // update the board every t seconds if running
+    if (running && !waiting) {
+      const t = 0.5;
+      newBoard(conway(board));
+      setWaiting(true);
+      setTimeout(() => setWaiting(false), t * 1000);
+    }
   });
   return (
     <div className="App">
       <Board board={board} />
-      {/* <button onClick={() => newBoard(conway(board))}>new board</button> */}
+      <button onClick={() => setRunning(!running)}>start/stop</button>
+      <button onClick={() => newBoard(ogBoard)}>reset</button>
     </div>
   );
 }

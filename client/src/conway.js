@@ -56,28 +56,29 @@ const countLiveNeighbors = function(board, r, c) {
   return liveNeighbors;
 };
 
-const log_board = function(board) {
-  let sep = "-".repeat(board.length * 2);
-  console.log(sep);
-  board.forEach(row => {
-    let printRow = [];
-    row.forEach(col => {
-      // process.stdout.write(col.toString() + " ");
-      printRow.push(col);
-    });
-    console.log(printRow.join(" "));
-  });
-  console.log(sep);
-};
+// // for debugging:
+// const log_board = function(board) {
+//   let sep = "-".repeat(board.length * 2);
+//   console.log(sep);
+//   board.forEach(row => {
+//     let printRow = [];
+//     row.forEach(col => {
+//       // process.stdout.write(col.toString() + " ");
+//       printRow.push(col);
+//     });
+//     console.log(printRow.join(" "));
+//   });
+//   console.log(sep);
+// };
 
-const board = [
-  [1, 0, 0, 0, 0, 0, 0, 1, 0],
-  [0, 1, 1, 0, 0, 0, 0, 1, 0],
-  [1, 1, 0, 0, 0, 0, 0, 1, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0]
-];
+// const board = [
+//   [1, 0, 0, 0, 0, 0, 0, 1, 0],
+//   [0, 1, 1, 0, 0, 0, 0, 1, 0],
+//   [1, 1, 0, 0, 0, 0, 0, 1, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0, 0],
+//   [0, 0, 0, 0, 0, 0, 0, 0, 0]
+// ];

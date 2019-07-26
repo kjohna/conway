@@ -23,7 +23,9 @@ function Board(props) {
     justify-content: space-between;
   `;
 
-  const rows = board.map((row, i) => <Row key={i} row={row} dims={dims} />);
+  const rows = board.map((row, i) => (
+    <Row key={`r:${i}`} r={i} row={row} dims={dims} />
+  ));
   return <Board>{rows}</Board>;
 }
 

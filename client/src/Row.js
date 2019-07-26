@@ -9,7 +9,12 @@ export default function Row(props) {
     flex-wrap: wrap;
   `;
   const cells = props.row.map((cell, i) => (
-    <Cell key={i} active={cell} dims={props.dims} />
+    <Cell
+      key={`c:${i}`}
+      rc={`${props.r},${i}`}
+      active={cell}
+      dims={props.dims}
+    />
   ));
   return <Row>{cells}</Row>;
 }
