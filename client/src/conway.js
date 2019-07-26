@@ -1,11 +1,11 @@
-const conway = function(board) {
+export default function(board) {
   // assumes rectangular board
   const nextBoard = board.map(row => [...row]); // DON'T DO THIS: [...board];
   const numRows = nextBoard.length;
   const numCols = nextBoard[0].length;
   // for each cell
-  for (r = 0; r < numRows; r++) {
-    for (c = 0; c < numCols; c++) {
+  for (let r = 0; r < numRows; r++) {
+    for (let c = 0; c < numCols; c++) {
       // get live neighbor count
       const liveNeighbors = countLiveNeighbors(board, r, c);
       // determine if cell lives or dies, populate nextBoard with update
@@ -27,7 +27,7 @@ const conway = function(board) {
     }
   }
   return nextBoard;
-};
+}
 
 const countLiveNeighbors = function(board, r, c) {
   // assuming rectangular board
@@ -43,11 +43,11 @@ const countLiveNeighbors = function(board, r, c) {
       // NOTE: off-board 'neighbors' are dead, no wrap-around
       const rowNeighborExists = !(rowNeighbor < 0 || rowNeighbor >= numRows);
       const colNeighborExists = !(colNeighbor < 0 || colNeighbor >= numCols);
-      const notSelf = !(rowNeighbor == r && colNeighbor == c);
+      const notSelf = !(rowNeighbor === r && colNeighbor === c);
       if (rowNeighborExists && colNeighborExists && notSelf) {
         neighbor = board[rowNeighbor][colNeighbor];
       }
-      if (neighbor == 1) {
+      if (neighbor === 1) {
         liveNeighbors++;
       }
     }
@@ -57,7 +57,7 @@ const countLiveNeighbors = function(board, r, c) {
 };
 
 const log_board = function(board) {
-  sep = "-".repeat(board.length * 2);
+  let sep = "-".repeat(board.length * 2);
   console.log(sep);
   board.forEach(row => {
     let printRow = [];
@@ -81,15 +81,3 @@ const board = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
-
-log_board(board);
-let next = conway(board);
-log_board(next);
-// next = conway(next);
-// log_board(conway(next));
-// next = conway(next);
-// log_board(conway(next));
-// next = conway(next);
-// log_board(conway(next));
-// next = conway(next);
-// log_board(conway(next));
