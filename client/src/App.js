@@ -15,34 +15,29 @@ function App() {
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0]
   ];
-  const [board, newBoard] = useState(ogBoard);
+  let [board, newBoard] = useState(ogBoard);
   const [running, setRunning] = useState(false);
   const [waiting, setWaiting] = useState(false);
-  const [cellUpdate, setCellUpdate] = useState(false);
 
   useEffect(() => {
     // update the board every t seconds if running
+    console.log("useEffect");
     if (running && !waiting) {
       const t = 0.5;
-      newBoard(conway(board));
+      newBoard(board => conway(board));
       setWaiting(true);
       setTimeout(() => setWaiting(false), t * 1000);
     }
-  }, [running, waiting, board]);
-
-  useEffect(() => {
-    if (cellUpdate) {
-      newBoard(board);
-      setCellUpdate(false);
-    }
-  }, [cellUpdate, board]);
+  }, [running, waiting]);
 
   const cellClick = rc => {
+    console.log(`cellClick: ${rc}`);
     const rcArr = rc.split(",");
     const r = rcArr[0];
     const c = rcArr[1];
-    board[r][c] = !board[r][c] ? 1 : 0;
-    setCellUpdate(true);
+    const updatedBoard = board.map(row => [...row]);
+    updatedBoard[r][c] = !board[r][c] ? 1 : 0;
+    newBoard(updatedBoard);
   };
 
   return (
