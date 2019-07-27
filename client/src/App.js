@@ -18,6 +18,7 @@ function App() {
   const [board, newBoard] = useState(ogBoard);
   const [running, setRunning] = useState(false);
   const [waiting, setWaiting] = useState(false);
+  const [cellUpdate, setCellUpdate] = useState(false);
 
   useEffect(() => {
     // update the board every t seconds if running
@@ -27,10 +28,26 @@ function App() {
       setWaiting(true);
       setTimeout(() => setWaiting(false), t * 1000);
     }
-  });
+    if (cellUpdate) {
+      newBoard(board);
+      setCellUpdate(false);
+    }
+  }, [running, waiting, board, cellUpdate]);
+
+  const cellClick = rc => {
+    const rcArr = rc.split(",");
+    const r = rcArr[0];
+    const c = rcArr[1];
+    console.log(board);
+    board[r][c] = !board[r][c] ? 1 : 0;
+    setCellUpdate(true);
+    console.log(`${r}, ${c} = ${!board[r][c] ? 1 : 0}`);
+    console.log(board);
+  };
+
   return (
     <div className="App">
-      <Board board={board} />
+      <Board board={board} cellClick={cellClick} />
       <button onClick={() => setRunning(!running)}>start/stop</button>
       <button onClick={() => newBoard(ogBoard)}>reset</button>
     </div>

@@ -24,7 +24,13 @@ function Board(props) {
   `;
 
   const rows = board.map((row, i) => (
-    <Row key={`r:${i}`} r={i} row={row} dims={dims} />
+    <Row
+      key={`r:${i}`}
+      r={i}
+      row={row}
+      dims={dims}
+      cellClick={props.cellClick}
+    />
   ));
   return <Board>{rows}</Board>;
 }
