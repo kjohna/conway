@@ -14,6 +14,7 @@ export default function Row(props) {
       rc={`${props.r},${i}`}
       active={cell}
       dims={props.dims}
+      running={props.running}
       cellClick={props.cellClick}
     />
   ));

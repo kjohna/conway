@@ -8,5 +8,9 @@ export default function Cell(props) {
     background-color: ${props.active ? "white" : "black"};
     color: ${props.active ? "black" : "white"};
   `;
-  return <Cell onClick={() => props.cellClick(props.rc)} />;
+  return props.running ? (
+    <Cell />
+  ) : (
+    <Cell onClick={() => props.cellClick(props.rc)} />
+  );
 }

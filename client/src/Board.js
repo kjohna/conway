@@ -29,6 +29,7 @@ function Board(props) {
       r={i}
       row={row}
       dims={dims}
+      running={props.running}
       cellClick={props.cellClick}
     />
   ));
