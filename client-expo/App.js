@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
+import Board from "./Board";
 
 import conway from "./conway.js";
 
@@ -66,7 +67,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      {/* <Board board={board} running={running} cellClick={cellClick} /> */}
+      <Board board={board} running={running} cellClick={cellClick} />
       <Button onPress={() => setRunning(!running)} title="Start/Stop" />
       <Button onPress={() => handleReset()} title="Reset" />
       <Text>{generation}</Text>
