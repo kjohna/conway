@@ -25,15 +25,13 @@ function App() {
   let [board, setBoard] = useState(ogBoard);
   const [running, setRunning] = useState(false);
   const [generation, setGeneration] = useState(0);
-  // const [waiting, setWaiting] = useState(false);
   const nextBoard = conway(board);
-  console.log("here");
+  // console.log("here");
   const [animateBoard, setAnimateBoard] = useState(null);
 
   useEffect(() => {
-    console.log("running");
+    // console.log("running");
     if (running) {
-      // loop();
       setBoard(nextBoard);
     } else {
       // cancelAnimationFrame(animateBoard);
@@ -43,11 +41,11 @@ function App() {
 
   useEffect(() => {
     const t = 0.5;
-    console.log("board");
+    // console.log("board");
     if (running) {
       setGeneration(prevGeneration => prevGeneration + 1);
       setAnimateBoard(setTimeout(() => setBoard(nextBoard), t * 1000));
-      // animateBoard = requestAnimationFrame(() => setBoard(nextBoard));
+      // setAnimateBoard(requestAnimationFrame(() => setBoard(nextBoard)));
     }
   }, [board]);
 
