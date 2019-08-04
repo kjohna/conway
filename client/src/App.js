@@ -4,62 +4,58 @@ import conway from "./conway";
 import Board from "./Board.js";
 
 function App() {
-  // const ogBoard = [
-  //   [1, 0, 0, 0, 0, 0, 0, 1, 0],
-  //   [0, 1, 1, 0, 0, 0, 0, 1, 0],
-  //   [1, 1, 0, 0, 0, 0, 0, 1, 0],
-  //   [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  //   [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  //   [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  //   [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  //   [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  //   [0, 0, 0, 0, 0, 0, 0, 0, 0]
-  // ];
   const ogBoard = [
-    [0, 0, 0, 0, 0],
-    [0, 0, 1, 0, 0],
-    [0, 0, 1, 0, 0],
-    [0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 0]
+    [1, 0, 0, 0, 0, 0, 0, 1, 0],
+    [0, 1, 1, 0, 0, 0, 0, 1, 0],
+    [1, 1, 0, 0, 0, 0, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0]
   ];
+  // const ogBoard = [
+  //   [0, 0, 0, 0, 0],
+  //   [0, 0, 1, 0, 0],
+  //   [0, 0, 1, 0, 0],
+  //   [0, 0, 1, 0, 0],
+  //   [0, 0, 0, 0, 0]
+  // ];
   let [board, setBoard] = useState(ogBoard);
   const [running, setRunning] = useState(false);
   const [generation, setGeneration] = useState(0);
   // const [waiting, setWaiting] = useState(false);
+  const nextBoard = conway(board);
+  console.log("here");
+  let animateBoard;
+
+  function useAnimateBoard(running) {}
 
   useEffect(() => {
-    // update the board every t seconds if running
-    console.log("useEffect");
-    let animateBoard;
-    const t = 0.5;
-
-    function onFrame(nextBoard) {
-      setBoard(nextBoard);
-      setGeneration(prevGeneration => prevGeneration + 1);
-    }
-
-    function loop() {
-      // const updatedBoard = conway(board);
-      debugger;
-      const nextBoard = conway(board);
-      animateBoard = setTimeout(() => onFrame(nextBoard), t * 1000);
-      // animateBoard = requestAnimationFrame(() => onFrame(nextBoard));
-    }
-
+    console.log("running");
     if (running) {
-      loop();
+      // loop();
+      setBoard(nextBoard);
     } else {
       // cancelAnimationFrame(animateBoard);
-      clearTimeout(animateBoard);
+      // clearTimeout(animateBoard);
     }
+  }, [running]);
 
-    // if (running && !waiting) {
-    //   const t = 0.5;
-    //   setBoard(board => conway(board));
-    //   setWaiting(true);
-    //   setTimeout(() => setWaiting(false), t * 1000);
-    // }
-  }, [running, board]);
+  useEffect(() => {
+    const t = 0.5;
+    console.log("board");
+    if (running) {
+      setGeneration(prevGeneration => prevGeneration + 1);
+      animateBoard = setTimeout(() => setBoard(nextBoard), t * 1000);
+      // animateBoard = requestAnimationFrame(() => setBoard(nextBoard));
+    }
+  }, [board]);
+
+  useEffect(() => {
+    console.log("generation");
+  }, [generation]);
 
   const cellClick = rc => {
     console.log(`cellClick: ${rc}`);
