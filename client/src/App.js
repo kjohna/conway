@@ -28,9 +28,7 @@ function App() {
   // const [waiting, setWaiting] = useState(false);
   const nextBoard = conway(board);
   console.log("here");
-  let animateBoard;
-
-  function useAnimateBoard(running) {}
+  const [animateBoard, setAnimateBoard] = useState(null);
 
   useEffect(() => {
     console.log("running");
@@ -39,7 +37,7 @@ function App() {
       setBoard(nextBoard);
     } else {
       // cancelAnimationFrame(animateBoard);
-      // clearTimeout(animateBoard);
+      clearTimeout(animateBoard);
     }
   }, [running]);
 
@@ -48,14 +46,10 @@ function App() {
     console.log("board");
     if (running) {
       setGeneration(prevGeneration => prevGeneration + 1);
-      animateBoard = setTimeout(() => setBoard(nextBoard), t * 1000);
+      setAnimateBoard(setTimeout(() => setBoard(nextBoard), t * 1000));
       // animateBoard = requestAnimationFrame(() => setBoard(nextBoard));
     }
   }, [board]);
-
-  useEffect(() => {
-    console.log("generation");
-  }, [generation]);
 
   const cellClick = rc => {
     console.log(`cellClick: ${rc}`);
