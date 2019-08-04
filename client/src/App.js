@@ -59,11 +59,16 @@ function App() {
     setBoard(updatedBoard);
   };
 
+  const handleReset = () => {
+    setBoard(ogBoard);
+    setGeneration(0);
+  };
+
   return (
     <div className="App">
       <Board board={board} running={running} cellClick={cellClick} />
       <button onClick={() => setRunning(!running)}>start/stop</button>
-      <button onClick={() => setBoard(ogBoard)}>reset</button>
+      <button onClick={() => handleReset()}>reset</button>
       {running && "running"}
       {generation}
     </div>
