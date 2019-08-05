@@ -5,13 +5,13 @@ import Row from "./Row";
 
 export default function Board(props) {
   const board = props.board;
-  const width = 500,
-    height = 500;
+  // const width = 500,
+  //   height = 500;
   const dims = {
     rows: board.length,
-    cols: board[0].length,
-    width,
-    height
+    cols: board[0].length
+    // width,
+    // height
   };
 
   const rows = board.map((row, i) => (
@@ -29,12 +29,14 @@ export default function Board(props) {
 
 const styles = StyleSheet.create({
   board: {
-    width: "95%",
-    maxHeight: "80%",
+    width: 1000,
+    maxWidth: "80%",
+    height: 1000,
+    maxHeight: "50%",
     borderStyle: "solid",
     borderColor: "blue",
     borderWidth: 5,
-    flexDirection: "row",
+    flexDirection: "column",
     flexWrap: "wrap",
     justifyContent: "space-between"
   }
