@@ -4,6 +4,15 @@ import { StyleSheet, Text, View } from "react-native";
 import Cell from "./Cell";
 
 export default function Row(props) {
+  const styles = StyleSheet.create({
+    row: {
+      // borderWidth: 1,
+      // borderColor: "red",
+      width: props.dims.width,
+      height: props.dims.height / props.dims.rows,
+      flexDirection: "row"
+    }
+  });
   const cells = props.row.map((cell, i) => (
     <Cell
       key={`c:${i}`}
@@ -16,10 +25,3 @@ export default function Row(props) {
   ));
   return <View style={styles.row}>{cells}</View>;
 }
-
-const styles = StyleSheet.create({
-  row: {
-    display: "flex",
-    flexWrap: "wrap"
-  }
-});

@@ -5,16 +5,38 @@ import Row from "./Row";
 
 export default function Board(props) {
   const board = props.board;
-  // const width = 500,
-  //   height = 500;
+  const width = 300,
+    height = 300;
   const dims = {
     rows: board.length,
-    cols: board[0].length
-    // width,
-    // height
+    cols: board[0].length,
+    width: width,
+    height: height
   };
 
+  const styles = StyleSheet.create({
+    board: {
+      width,
+      height
+      // borderStyle: "solid",
+      // borderColor: "blue",
+      // borderWidth: 1
+      // flex: -1,
+      // flexDirection: "column"
+      // flexWrap: "wrap"
+    }
+  });
+
   const rows = board.map((row, i) => (
+    // <View
+    //   style={{
+    //     width: 300,
+    //     height: 300 / board.length,
+    //     backgroundColor: "green"
+    //   }}
+    // >
+    //   <Text>{row}</Text>
+    // </View>
     <Row
       key={`r:${i}`}
       r={i}
@@ -26,18 +48,3 @@ export default function Board(props) {
   ));
   return <View style={styles.board}>{rows}</View>;
 }
-
-const styles = StyleSheet.create({
-  board: {
-    width: 1000,
-    maxWidth: "80%",
-    height: 1000,
-    maxHeight: "50%",
-    borderStyle: "solid",
-    borderColor: "blue",
-    borderWidth: 5,
-    flexDirection: "column",
-    flexWrap: "wrap",
-    justifyContent: "space-between"
-  }
-});
