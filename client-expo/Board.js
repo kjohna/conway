@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-// import Row from "../client/src/Row";
+
+import Row from "./Row";
 
 export default function Board(props) {
   const board = props.board;
@@ -14,15 +15,14 @@ export default function Board(props) {
   };
 
   const rows = board.map((row, i) => (
-    <Text>{row}</Text>
-    // <Row
-    //   key={`r:${i}`}
-    //   r={i}
-    //   row={row}
-    //   dims={dims}
-    //   running={props.running}
-    //   cellClick={props.cellClick}
-    // />
+    <Row
+      key={`r:${i}`}
+      r={i}
+      row={row}
+      dims={dims}
+      running={props.running}
+      cellClick={props.cellClick}
+    />
   ));
   return <View style={styles.board}>{rows}</View>;
 }
